@@ -1,6 +1,5 @@
 package com.example.movieappmad24.models
 
-
 data class Movie(
     val id: String,
     val title: String,
@@ -11,8 +10,7 @@ data class Movie(
     val plot: String,
     val images: List<String>,
     val trailer: String,
-    val rating: String
-)
+    val rating: String)
 
 fun getMovies(): List<Movie> {
     return listOf(
@@ -30,7 +28,6 @@ fun getMovies(): List<Movie> {
                 "https://images-na.ssl-images-amazon.com/images/M/MV5BMTYxMDg1Nzk1MV5BMl5BanBnXkFtZTcwMDk0MTUzNA@@._V1_SX1500_CR0,0,1500,999_AL_.jpg"),
             trailer = "trailer_placeholder",
             rating = "7.9"),
-
         Movie(id = "tt0416449",
             title = "300",
             year = "2006",
@@ -44,7 +41,6 @@ fun getMovies(): List<Movie> {
             ),
             trailer = "trailer_placeholder",
             rating = "7.7"),
-
         Movie(id = "tt0848228",
             title = "The Avengers",
             year = "2012",
@@ -59,7 +55,6 @@ fun getMovies(): List<Movie> {
                 "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc3MzQ3NjA5N15BMl5BanBnXkFtZTcwMzY5OTY3Nw@@._V1_SX1777_CR0,0,1777,999_AL_.jpg"),
             trailer = "trailer_placeholder",
             rating = "8.1"),
-
         Movie(id = "tt0993846",
             title = "The Wolf of Wall Street",
             year = "2013",
@@ -74,7 +69,6 @@ fun getMovies(): List<Movie> {
                 "https://images-na.ssl-images-amazon.com/images/M/MV5BMTgzMTg4MDI0Ml5BMl5BanBnXkFtZTgwOTY0MzQ4MDE@._V1_SY1000_CR0,0,1553,1000_AL_.jpg"),
             trailer = "trailer_placeholder",
             rating = "8.2"),
-
         Movie(id = "tt0816692",
             title = "Interstellar",
             year = "2014",
@@ -103,8 +97,6 @@ fun getMovies(): List<Movie> {
                 "https://images-na.ssl-images-amazon.com/images/M/MV5BNTMyMTRjZWEtM2UxMS00ZjU5LWIxMTYtZDA5YmJhZmRjYTc4XkEyXkFqcGdeQXVyMjk3NTUyOTc@._V1_SX1777_CR0,0,1777,999_AL_.jpg"),
             trailer = "trailer_placeholder",
             rating = "9.5"),
-
-
         Movie(id = "tt2306299",
             title = "Vikings",
             year = "2013–2020",
@@ -119,7 +111,6 @@ fun getMovies(): List<Movie> {
                 "https://images-na.ssl-images-amazon.com/images/M/MV5BMTcxOTQ3NTA5N15BMl5BanBnXkFtZTgwMzExMDUxODE@._V1_SY1000_SX1500_AL_.jpg"),
             trailer = "trailer_placeholder",
             rating = "9.5"),
-
         Movie(id = "tt0903747",
             title = "Breaking Bad",
             year = "2008–2013",
@@ -134,7 +125,6 @@ fun getMovies(): List<Movie> {
                 "https://images-na.ssl-images-amazon.com/images/M/MV5BMjA5MTE3MTgwMF5BMl5BanBnXkFtZTgwOTQxMjUzMDE@._V1_SX1500_CR0,0,1500,999_AL_.jpg"),
             trailer = "trailer_placeholder",
             rating = "9.5"),
-
         Movie(id = "tt2707408",
             title = "Narcos",
             year = "2015-",
@@ -148,7 +138,6 @@ fun getMovies(): List<Movie> {
                 "https://images-na.ssl-images-amazon.com/images/M/MV5BODA1NjAyMTQ3Ml5BMl5BanBnXkFtZTgwNjI1Mzc3OTE@._V1_SY1000_CR0,0,1499,1000_AL_.jpg",
                 "https://images-na.ssl-images-amazon.com/images/M/MV5BMTU0NzQ0OTAwNl5BMl5BanBnXkFtZTgwMDAyMzA1OTE@._V1_SX1500_CR0,0,1500,999_AL_.jpg"),
             trailer = "trailer_placeholder",
-            rating = "9.5"),
-
-        )
+            rating = "9.5")
+    )
 }
