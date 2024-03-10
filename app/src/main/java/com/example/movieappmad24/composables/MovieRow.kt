@@ -43,8 +43,8 @@ fun MovieRow(movie: Movie){
 
     var expandedState by remember { mutableStateOf(false) }
 
-    // val moviePoster = remember { movie.images.random() } --> App startet nicht mehr
-    val moviePoster = movie.images
+    //val moviePoster = remember { movie.images.random() }  -> random movie images
+    val moviePoster = movie.images[0] // first movie images from Movie.kt
 
     Card(modifier = Modifier
         .fillMaxWidth()
