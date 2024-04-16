@@ -2,6 +2,7 @@
 
 package com.example.movieappmad24.widgets
 
+import android.net.Uri
 import androidx.annotation.OptIn
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -30,6 +31,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ShapeDefaults
 import androidx.compose.material3.Text
@@ -84,13 +86,13 @@ fun MovieList(navController: NavController, moviesViewModel: MoviesViewModel, mo
 
 @Composable
 fun MovieRow(
-    modifier: Modifier = Modifier,
+    //modifier: Modifier = Modifier,
     movie: Movie,
-    //viewModel : MoviesViewModel,
+    //moviesViewModel: MoviesViewModel,
     onFavoriteClick: (String) -> Unit = {},
     onItemClick: (String) -> Unit = {}
 ){
-    Card(modifier = modifier
+    Card(modifier = Modifier
         .fillMaxWidth()
         .padding(5.dp)
         .clickable {
@@ -99,16 +101,17 @@ fun MovieRow(
         shape = ShapeDefaults.Large,
         elevation = CardDefaults.cardElevation(10.dp)
     ) {
-        Column {
+        Column(modifier = Modifier.clickable { onItemClick(movie.id) }) {
 
             MovieCardHeader(
                 imageUrl = movie.images[0],
                 isFavorite = movie.isFavorite,
-                onFavoriteClick = { onFavoriteClick(movie.id) }
+                onFavoriteClick = { onFavoriteClick(movie.id)}
                 //onFavoriteClick = { viewModel.toggleFavoriteMovie(movie.id)}
             )
 
-            MovieDetails(modifier = modifier.padding(12.dp), movie = movie)
+            MovieDetails(modifier = Modifier.padding(12.dp), movie = movie)
+
 
         }
     }
@@ -130,6 +133,7 @@ fun MovieCardHeader(
         MovieImage(imageUrl)
 
         FavoriteIcon(isFavorite = isFavorite, onFavoriteClick)
+
     }
 }
 
@@ -172,6 +176,7 @@ fun FavoriteIcon(
             },
 
             contentDescription = "Add to favorites")
+
     }
 }
 
@@ -255,7 +260,7 @@ fun HorizontalScrollableImageView(movie: Movie) {
 
 @OptIn(UnstableApi::class)
 @Composable
-fun Player() {
+fun Player(movie: Movie) {
     var lifecycle by remember {
         mutableStateOf(Lifecycle.Event.ON_CREATE)
     }
@@ -263,10 +268,12 @@ fun Player() {
 
 
 
-    val mediaItem = MediaItem.fromUri("android.resource://${context.packageName}/${R.raw.trailer_placeholder}")
+    //val mediaItem = MediaItem.fromUri("android.resource://${context.packageName}/${R.raw.trailer_placeholder}")
 
 
-
+    val resourceId = context.resources.getIdentifier(movie.trailer, "raw", context.packageName)
+    val uri = Uri.parse("android.resource://${context.packageName}/$resourceId")
+    val mediaItem = MediaItem.fromUri(uri)
 
     val exoPlayer = remember {
         ExoPlayer.Builder(context).build().apply {

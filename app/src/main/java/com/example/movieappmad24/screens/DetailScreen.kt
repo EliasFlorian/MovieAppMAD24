@@ -22,11 +22,12 @@ import com.example.movieappmad24.widgets.Player
 fun DetailScreen(
     movieId: String?,
     navController: NavController,
+    //onFavoriteClick: (String) -> Unit,
     moviesViewModel: MoviesViewModel
 ) {
 
     movieId?.let {
-        val movie = getMovies().filter { movie -> movie.id == movieId }[0]
+        val movie = moviesViewModel.movies.filter { movie -> movie.id == movieId }[0]
 
         Scaffold (
             topBar = {
@@ -40,9 +41,9 @@ fun DetailScreen(
                 }
             }
         ){ innerPadding ->
-            Column {
-                MovieRow(modifier = Modifier.padding(innerPadding), movie = movie)
-                Player()
+            Column(modifier = Modifier.padding(innerPadding)) {
+                MovieRow(movie = movie)
+                Player(movie)
                 HorizontalScrollableImageView(movie = movie)
 
 
