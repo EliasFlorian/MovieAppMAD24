@@ -1,5 +1,7 @@
 package com.example.movieappmad24.screens
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -25,12 +27,14 @@ fun HomeScreen(
                 navController = navController
             )
         }
-    ){ innerPadding ->
-        MovieList(
-            modifier = Modifier.padding(innerPadding),
-            movies = getMovies(),
-            navController = navController,
-            viewModel = moviesViewModel
-        )
+    ){innerPadding ->
+        Box(
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize()
+
+        ) {
+            MovieList(navController = navController, moviesViewModel = moviesViewModel, movies = moviesViewModel.movies)
+        }
     }
 }

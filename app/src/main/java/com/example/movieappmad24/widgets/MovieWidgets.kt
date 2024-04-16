@@ -2,8 +2,6 @@
 
 package com.example.movieappmad24.widgets
 
-import android.content.Context
-import android.widget.FrameLayout
 import androidx.annotation.OptIn
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -19,7 +17,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -38,7 +35,6 @@ import androidx.compose.material3.ShapeDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -58,14 +54,9 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
-import androidx.lifecycle.LifecycleOwner
 import androidx.media3.common.MediaItem
 import androidx.media3.common.util.UnstableApi
-import androidx.media3.datasource.DefaultHttpDataSource
-import androidx.media3.datasource.RawResourceDataSource
 import androidx.media3.exoplayer.ExoPlayer
-import androidx.media3.exoplayer.source.MediaSource
-import androidx.media3.exoplayer.source.ProgressiveMediaSource
 import androidx.media3.ui.PlayerView
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
@@ -73,28 +64,19 @@ import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.example.movieappmad24.R
 import com.example.movieappmad24.models.Movie
-import com.example.movieappmad24.models.getMovies
 import com.example.movieappmad24.navigation.Screen
 import com.example.movieappmad24.viewmodels.MoviesViewModel
 
 
 @Composable
-fun MovieList(
-    modifier: Modifier,
-    movies: List<Movie> = getMovies(),
-    navController: NavController,
-    viewModel: MoviesViewModel
-){
-    LazyColumn(modifier = modifier) {
-        items(viewModel.movies) { movie ->
+fun MovieList(navController: NavController, moviesViewModel: MoviesViewModel, movies: List<Movie>){
+    LazyColumn(
+    ) {
+        items(movies) { movie ->
             MovieRow(
                 movie = movie,
-                onFavoriteClick = {movieId ->
-                    viewModel.toggleFavoriteMovie(movieId)
-                },
-                onItemClick = { movieId ->
-                    navController.navigate(route = Screen.DetailScreen.withId(movieId))
-                }
+                onFavoriteClick = { movieId -> moviesViewModel.toggleFavoriteMovie(movieId) },
+                onItemClick = { movieId -> navController.navigate(Screen.DetailScreen.withId(movieId)) }
             )
         }
     }
@@ -180,7 +162,7 @@ fun FavoriteIcon(
         Icon(
             modifier = Modifier.clickable {
                 onFavoriteClick() },
-            tint = MaterialTheme.colorScheme.secondary,
+            tint = Color.Yellow,
             imageVector =
             if (isFavorite) {
                 Icons.Filled.Favorite
